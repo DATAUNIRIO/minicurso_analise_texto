@@ -82,11 +82,11 @@ Os métodos digitais trouxeram uma nova abordagem para os processos de pesquisa 
    
 # Códigos 
 
-[https://raw.githubusercontent.com/DATAUNIRIO/minicurso_SNA/main/codigos/codigo_01.R](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_SNA/main/codigos/codigo_01.R)
+[https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/codigos/codigo_dia_01.R](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/codigos/codigo_dia_01.R)
 
-[https://raw.githubusercontent.com/DATAUNIRIO/minicurso_SNA/main/codigos/codigo_02.R](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_SNA/main/codigos/codigo_02.R)
+[https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/codigos/codigo_dia_02.R](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/codigos/codigo_dia_02.R)
 
-[https://raw.githubusercontent.com/DATAUNIRIO/minicurso_SNA/main/codigos/codigo_03.R](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_SNA/main/codigos/codigo_03.R)   
+[https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/codigos/codigo_extra.R](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/codigos/codigo_extra.R)   
    
    
 # Base de dados 
