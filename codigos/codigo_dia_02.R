@@ -6,7 +6,7 @@
 
 
 library(readtext)
-dom = readtext("C:/Users/Hp/Documents/GitHub/minicurso_analise_texto/dados/Dom_Casmurro.txt")
+dom = readtext("C:/Users/Hp/Documents/GitHub/minicurso_analise_texto/dados/txt/Dom_Casmurro.txt")
 
 library(tidytext)
 library(dplyr)
@@ -39,6 +39,16 @@ contagem = tidy_dom %>%
 library(wordcloud2)
 wordcloud2(demoFreq)
 #wordcloud2(contagem)
+
+library(ggplot2)
+
+tidy_books %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 600) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(n, word)) +
+  geom_col() +
+  labs(y = NULL)
 
 library(corpus)
 text <- "love loving lovingly loved lover lovely love"
