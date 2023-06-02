@@ -25,7 +25,8 @@ options(digits = 2)
 ```
 
 ```{css, echo=FALSE}
-  @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
   body {
     font-family: 'Roboto';
   }
@@ -106,9 +107,9 @@ O objetivo central do curso é promover a capacidade de criar códigos para aná
 
 ### Apresentação
 
-**[Motivação](https://giel-investigacao-eleitoral.github.io/analise_textos/apresentacao/motivacao#1)**  
+**[Motivação](https://dataunirio.github.io/minicurso_analise_texto/apresentacao/motivacao)**  
   
-**[Termos e Conceitos](https://giel-investigacao-eleitoral.github.io/analise_textos/apresentacao/#1)**
+**[Termos e Conceitos](https://dataunirio.github.io/minicurso_analise_texto/apresentacao/index)**
 
 
 # Códigos 
@@ -117,7 +118,7 @@ O objetivo central do curso é promover a capacidade de criar códigos para aná
    
 # Base de dados 
 
-### txt
+###  txt
 
 [Dom Casmurro](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/dados/txt/Dom_Casmurro.txt)
 
@@ -129,11 +130,11 @@ O objetivo central do curso é promover a capacidade de criar códigos para aná
 
 ### RData
 
-#### [Machado de Assis](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_dom_casmurro.RDATA)  
+[Machado de Assis](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_dom_casmurro.RDATA)  
   
-#### [Euclides da Cunha](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_sertoes.RDATA)   
+[Euclides da Cunha](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_sertoes.RDATA)   
    
-#### [Guimarães Rosa](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_guimaraes_rosa.RData)  
+[Guimarães Rosa](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_guimaraes_rosa.RData)  
 
 
 ***
