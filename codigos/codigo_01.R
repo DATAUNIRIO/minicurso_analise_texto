@@ -47,6 +47,7 @@ text_tokens(texto, stemmer = "pt")
 
 library(lemmar)
 lemmatize_pt(texto)
+
 lemmatize_pt(Poeminho_do_Contra)
 
 
@@ -55,10 +56,11 @@ library(readtext)
 library(tidytext)
 library(dplyr)
 
-dom = readtext("C:/Users/Hp/Documents/GitHub/minicurso_analise_texto/dados/txt/Dom_Casmurro.txt")
+dom = readtext("https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/dados/txt/Dom_Casmurro.txt")
 
 head(dom$text)
 
+#--------------------------------------------------------------------------------------------------------------
 dom$text =  chartr(
   "áéóūáéíóúÁÉÍÓÚýÝàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãõÃÕñÑäëïöüÄËÏÖÜÿçÇ",
   "aeouaeiouAEIOUyYaeiouAEIOUaeiouAEIOUaoAOnNaeiouAEIOUycC",
@@ -125,54 +127,6 @@ load(url(link_dados))
 frases_sertoes = frases_sertoes %>% pull(sents) %>% tibble() 
 colnames(frases_sertoes) = 'texto'
 
-
 tidy_sertoes =  frases_sertoes %>%
   unnest_tokens(word, texto)
 
-
-#------------------------------------------------------------
-#------------------------------------------------------------
-#Bigramas 
-#------------------------------------------------------------
-#------------------------------------------------------------
-
-bigrama_dom <- dom %>%
-  unnest_tokens(bigram, text, token = "ngrams", n = 2)
-
-bigrama_dom %>%   tibble()  %>%
-  count(bigram, sort = TRUE)
-
-library(tidyr)
-bigramas <- bigrama_dom %>% tibble() %>%
-  separate(bigram, c("word1", "word2"), sep = " ")
-
-bigramas <- bigramas %>%
-  filter(!word1 %in% palavras_banidas$word) %>%
-  filter(!word2 %in% palavras_banidas$word)
-
-contagem_bigramas <- bigramas %>% 
-  count(word1, word2, sort = TRUE)
-
-contagem_bigramas %>% filter(word1 == "capitu")
-
-#Trigramas
-trigrama_dom <- dom %>%  tibble()  %>%
-  unnest_tokens(trigram, text, token = "ngrams", n = 3)
-
-trigrama_dom %>% count(trigram, sort = TRUE)
-
-#n-gramas
-library(igraph)
-rede_bigrama <- contagem_bigramas %>%
-  filter(n > 17) %>%
-  graph_from_data_frame()
-
-rede_bigrama
-
-library(ggraph)
-set.seed(12345)
-
-ggraph(rede_bigrama, layout = 'kk') +
-  geom_edge_link() +
-  geom_node_point(color = "lightblue", size = 5) +
-  geom_node_text(aes(label = name), vjust = 1, hjust = 1) 
