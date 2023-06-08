@@ -7,10 +7,13 @@
 library(readtext)
 library(tidytext)
 library(dplyr)
+library(stopwords)
+library(tidyr)
+
+
 dom = readtext("https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/dados/txt/Dom_Casmurro.txt")
 head(dom$text)
 
-library(stopwords)
 palavras_banidas = stopwords("pt")
 palavras_banidas = tibble(palavras_banidas)
 palavras_banidas = palavras_banidas %>% rename(word=palavras_banidas)
@@ -35,7 +38,6 @@ bigrama_dom <- dom %>%
 bigrama_dom %>%   tibble()  %>%
   count(bigram, sort = TRUE)
 
-library(tidyr)
 bigramas <- bigrama_dom %>% tibble() %>%
   separate(bigram, c("word1", "word2"), sep = " ")
 
@@ -56,72 +58,16 @@ trigrama_dom %>% count(trigram, sort = TRUE)
 
 #n-gramas
 library(igraph)
+library(ggraph)
+
 rede_bigrama <- contagem_bigramas %>%
   filter(n > 17) %>%
   graph_from_data_frame()
-
-rede_bigrama
-
-library(ggraph)
-set.seed(12345)
 
 ggraph(rede_bigrama, layout = 'kk') +
   geom_edge_link() +
   geom_node_point(color = "lightblue", size = 5) +
   geom_node_text(aes(label = name), vjust = 1, hjust = 1) 
-
-#----------------------------------------------------------------------------
-# Machado de Assis
-link_dados = 'https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_dom_casmurro.RDATA'
-load(url(link_dados))
-# Euclides da Cunha
-link_dados = 'https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_sertoes.RDATA'
-load(url(link_dados))
-# Guimarães Rosa
-#link_dados = 'https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_guimaraes_rosa.RData'
-#load(url(link_dados))
-
-names(frases_dom_casmurro)
-names(frases_sertoes)
-
-#---------------------------------------------------------
-# tf-idf 
-#---------------------------------------------------------
-
-frases_dom_casmurro   = frases_dom_casmurro %>% select(text)
-frases_sertoes        = frases_sertoes %>% select(sents)
-# frases_guimaraes_rosa = frases_guimaraes_rosa %>% select(word)
-
-tidy_MA  = frases_dom_casmurro %>% unnest_tokens(word, text)
-tidy_EC  = frases_sertoes %>% unnest_tokens(word, sents)
-# tidy_GR  = frases_guimaraes_rosa %>% unnest_tokens(word, word)
-
-
-tidy_MA = tidy_MA %>% anti_join(palavras_banidas) %>%   count(word, sort = TRUE)
-tidy_EC = tidy_EC %>% anti_join(palavras_banidas) %>%   count(word, sort = TRUE)
-#tidy_GR = tidy_GR %>% anti_join(palavras_banidas) %>%   count(word, sort = TRUE)
-
-tidy_MA$autor = 'Machado de Assis'
-tidy_EC$autor = 'Euclides da Cunha'
-#tidy_GR$autor = 'Guimarães Rosa'
-
-livros = tidy_MA %>% add_row(tidy_EC)
-livros_tf_idf <- livros %>% bind_tf_idf(word, autor, n)
-
-livros_tf_idf %>%
-  arrange(desc(tf_idf))
-
-library(forcats)
-
-livros_tf_idf %>%
-  group_by(autor) %>%
-  slice_max(tf_idf, n = 15) %>%
-  ungroup() %>%
-  ggplot(aes(tf_idf, fct_reorder(word, tf_idf), fill = autor)) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~autor, ncol = 2, scales = "free") +
-  labs(x = "tf-idf", y = NULL)
-
 
 #-------------------------------------------------------
 #-------------------------------------------------------
@@ -129,16 +75,18 @@ livros_tf_idf %>%
 # devtools::install_github("hadley/emo")
 #-------------------------------------------------------
 #-------------------------------------------------------
+remove(list = ls())
 
 library(emo)
 library(tidyr)
 library(dplyr)
 library(reactable)
 
-load(url("https://github.com/GIEL-Investigacao-Eleitoral/analise_textos/raw/main/dados/rdata/banco_tweets.RData"))
-table(banco_tweets$veiculo)
+load(url('https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/Paola_Carosella.RData'))
 
-emoji<-banco_tweets %>%
+table(Paola$classe)
+
+emoji<-Paola %>%
   mutate(emoji = ji_extract_all(text)) %>%
   unnest(cols = c(emoji)) %>%
   count(emoji, sort = TRUE) %>%
@@ -146,12 +94,12 @@ emoji<-banco_tweets %>%
 
 emoji %>%  reactable()
 
-#Top emoji por veiculo
-emoji_por_veiculo<-banco_tweets %>%
-  group_by(veiculo) %>%
+#Top emoji por classe
+emoji_por_classe <-Paola %>%
+  group_by(classe) %>%
   mutate(emoji = ji_extract_all(text)) %>%
   unnest(cols = c(emoji)) %>%
   count(emoji, sort = TRUE) %>%
-  top_n(5)
+  top_n(10)
 
-emoji_por_veiculo %>%  reactable()
+emoji_por_classe %>%  reactable()
