@@ -136,9 +136,9 @@ O objetivo central do curso é promover a capacidade de criar códigos para aná
 [Machado de Assis](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_dom_casmurro.RDATA)  
   
 [Euclides da Cunha](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_sertoes.RDATA)   
-   
 [Guimarães Rosa](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/frases_guimaraes_rosa.RData)  
 
+[Paola Carosella](https://github.com/DATAUNIRIO/minicurso_analise_texto/raw/main/dados/rdata/Paola_Carosella.RData)  
 
 ***
 
