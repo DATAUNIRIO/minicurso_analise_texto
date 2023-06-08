@@ -114,7 +114,10 @@ O objetivo central do curso é promover a capacidade de criar códigos para aná
 
 # Códigos 
 
-[Codigo 1](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/codigos/codigo_01.R)
+[Codigo 1](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/codigos/codigo_01.R)   
+
+[Codigo 2](https://raw.githubusercontent.com/DATAUNIRIO/minicurso_analise_texto/main/codigos/codigo_02.R)
+
    
 # Base de dados 
 
